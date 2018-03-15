@@ -8,13 +8,8 @@ class ControllerBase
 
   # Setup the controller
   def initialize(req, res)
-    p req
     @req = req
     @res = res
-    # @req = Rack::Request.new(env)
-    # @res = Rack::Response.new
-    # res['Content-Type'] = 'text/html'
-    # res.write('somebody')
   end
 
   # Helper method to alias @already_built_response
@@ -34,7 +29,7 @@ class ControllerBase
   def render_content(content, content_type)
     raise 'cannot render twice' if already_built_response?
     res.headers['Content-Type'] = content_type
-    res.body = [content]
+    res.body = [content] # use array
     @already_built_response = true
   end
 
